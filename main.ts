@@ -23,6 +23,9 @@ input.onButtonPressed(Button.A, function () {
     if (state == 2) {
         deathstar()
     }
+    if (state == 3) {
+        EscDeath()
+    }
 })
 function flight () {
     basic.showLeds(`
@@ -37,6 +40,16 @@ function flight () {
         basic.pause(200)
         led.unplot(index + 2, 2 - index)
     }
+    clear()
+}
+function EscDeath () {
+    images.createBigImage(`
+        . . . . . . . . . .
+        . # # . . . . . . .
+        # # # # . . . # # .
+        # # . # . . . . . .
+        . # # . . . . . . .
+        `).scrollImage(-1, 200)
     clear()
 }
 function landing () {
@@ -79,4 +92,4 @@ let maxstate = 0
 let state = 0
 scene1()
 state = 0
-maxstate = 2
+maxstate = 3
