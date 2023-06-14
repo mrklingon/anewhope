@@ -1,3 +1,29 @@
+function deathstar () {
+    basic.showLeds(`
+        . . . . .
+        . # # # .
+        # # # # #
+        # # . # #
+        . # # # .
+        `)
+    basic.pause(500)
+    clear()
+}
+input.onButtonPressed(Button.A, function () {
+    state += 1
+    if (state > maxstate) {
+        state = 0
+    }
+    if (state == 0) {
+        scene1()
+    }
+    if (state == 1) {
+        flight()
+    }
+    if (state == 2) {
+        deathstar()
+    }
+})
 function flight () {
     basic.showLeds(`
         . . . . .
@@ -11,13 +37,7 @@ function flight () {
         basic.pause(200)
         led.unplot(index + 2, 2 - index)
     }
-    images.createImage(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `).scrollImage(1, 200)
+    clear()
 }
 function landing () {
     basic.showLeds(`
@@ -33,6 +53,9 @@ function landing () {
         led.unplot(index, index)
     }
     basic.pause(500)
+    clear()
+}
+function clear () {
     images.createImage(`
         . . . . .
         . . . . .
@@ -49,17 +72,11 @@ function scene1 () {
         # . . . . . . . . .
         . . . . . . . . . .
         `).scrollImage(1, 200)
-    images.createImage(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `).scrollImage(1, 200)
+    clear()
     landing()
 }
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    flight()
-})
-scene1()
+let maxstate = 0
 let state = 0
+scene1()
+state = 0
+maxstate = 2
