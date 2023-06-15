@@ -43,14 +43,23 @@ function flight () {
     clear()
 }
 function EscDeath () {
-    images.createBigImage(`
-        . . . . . . . . . .
-        . # # . . . . . . .
-        # # # # . . . # # .
-        # # . # . . . . . .
-        . # # . . . . . . .
-        `).scrollImage(-1, 200)
-    clear()
+    basic.showLeds(`
+        . . . . .
+        . # # # .
+        # # # # #
+        # # . # #
+        . # # # .
+        `)
+    basic.pause(100)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . # # # .
+        # # # # #
+        # # . # #
+        `)
+    basic.pause(100)
+    flight()
 }
 function landing () {
     basic.showLeds(`
